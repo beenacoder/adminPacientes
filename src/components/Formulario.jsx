@@ -1,4 +1,12 @@
+import { useState } from "react"
+
+
 function Formulario() {
+	const [nombreMascota, setNombreMascota] = useState('');
+
+
+
+
 	return (
 		<div className="md:w-1/2 lg:w-2/5">
 			<h2 className="font-black text-3xl text-center">Seguimiento de Pacientes</h2>
@@ -18,6 +26,8 @@ function Formulario() {
 						type="text" 
 						placeholder="Nombre de tu mascota" 
 						className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+						value={nombreMascota}
+						onChange={(e)=>setNombreMascota(e.target.value)}
 						/>
 				</div>
 
