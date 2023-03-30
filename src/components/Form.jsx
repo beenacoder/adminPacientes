@@ -1,10 +1,47 @@
 import { useState } from "react"
 
 
-function Formulario() {
-	const [nombreMascota, setNombreMascota] = useState('');
+function Form({patients, setPatients}) {
+	const [petName, setPetName] = useState('');
+	const [ownerName, setOwnerName] = useState('');
+	const [email, setEmail] = useState('');
+	const [date, setDate] = useState('');
+	const [symptoms, setSymptoms] = useState('');
+
+	//Error state
+	const [error, setError] = useState(false);
 
 
+	const handleSubmit = (e) => {
+		e.preventDefault();
+
+		//Validations
+		if([petName, ownerName, email, date, symptoms].includes('')){
+			setError(true);
+			console.log('error');
+			return;
+		}
+		setError(false);
+
+		//Patients objets
+		const patientsObj = {
+			petName, 
+			ownerName, 
+			email, 
+			date, 
+			symptoms
+		}
+
+		setPatients([...patients, patientsObj]);
+
+		//Unsetting form
+		setPetName('');
+		setOwnerName('');
+		setEmail('');
+		setDate('');
+		setSymptoms('');
+
+	}
 
 
 	return (
@@ -14,34 +51,47 @@ function Formulario() {
 				Añade pacientes y {''} <span className="text-indigo-600 font-bold">Administralos</span>
 			</p>
 
-			<form className="bg-white shadow-md rounded-lg py-10 px-5 mt-7 mb-10">
+			<form className="bg-white shadow-md rounded-lg py-10 px-5 mt-7 mb-10"
+				onSubmit={handleSubmit}
+			>
+				{
+					error && 
+						(<div className="bg-red-600 text-white text-center font-bold p-3 uppercase mb-3 rounded bg-opacity-40">
+							<p className="text-red-800">Todos los campos son obligatorios</p>
+						</div>) 
+				} 
+				
+					
+
 				<div className="mb-5">
 					<label 
-					htmlFor="mascotaNombre"
+					htmlFor="petName"
 					className="block text-gray-700 uppercase font-bold">
 						Mascota
 					</label>
 					<input 
-						id="mascotaNombre"
+						id="petName"
 						type="text" 
 						placeholder="Nombre de tu mascota" 
 						className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-						value={nombreMascota}
-						onChange={(e)=>setNombreMascota(e.target.value)}
+						value={petName}
+						onChange={(e)=>setPetName(e.target.value)}
 						/>
 				</div>
 
 				<div className="mb-5">
 					<label 
-					htmlFor="propietarioNombre"
+					htmlFor="ownerName"
 					className="block text-gray-700 uppercase font-bold">
 						Propietario
 					</label>
 					<input 
-						id="propietarioNombre"
+						id="ownerName"
 						type="text" 
 						placeholder="Nombre del propietario"
 						className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+						value={ownerName}
+						onChange={(e)=>setOwnerName(e.target.value)}
 						/>
 				</div>
 
@@ -56,31 +106,37 @@ function Formulario() {
 						type="email" 
 						placeholder="Email de contacto"
 						className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+						value={email}
+						onChange={(e)=>setEmail(e.target.value)}
 						/>
 				</div>
 
 				<div className="mb-5">
 					<label 
-					htmlFor="fechaDeAlta"
+					htmlFor="date"
 					className="block text-gray-700 uppercase font-bold">
 						Fecha de Alta
 					</label>
 					<input 
-						id="fechaDeAlta"
+						id="date"
 						type="date" 
 						className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+						value={date}
+						onChange={(e)=>setDate(e.target.value)}
 						/>
 				</div>
 
 				<div className="mb-5">
 					<label 
-						htmlFor="sintomas"
+						htmlFor="symptoms"
 						className="block text-gray-700 uppercase font-bold">
 						Síntomas
 					</label>
-					<textarea id="sintomas" cols="30"
+					<textarea id="symptoms" cols="30"
 						className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
 						placeholder="¿Cuáles son los síntomas de tu mascota?"
+						value={symptoms}
+						onChange={(e)=>setSymptoms(e.target.value)}
 					/>
 				</div>
 				<input type="submit"
@@ -93,4 +149,4 @@ function Formulario() {
 	)
 }
 
-export default Formulario
+export default Form
