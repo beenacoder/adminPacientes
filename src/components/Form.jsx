@@ -1,7 +1,8 @@
 import { useState } from "react"
+import Error from "./Error";
 
 
-function Form({patients, setPatients}) {
+function Form({patients, setPatients, message}) {
 	const [petName, setPetName] = useState('');
 	const [ownerName, setOwnerName] = useState('');
 	const [email, setEmail] = useState('');
@@ -55,10 +56,8 @@ function Form({patients, setPatients}) {
 				onSubmit={handleSubmit}
 			>
 				{
-					error && 
-						(<div className="bg-red-600 text-white text-center font-bold p-3 uppercase mb-3 rounded bg-opacity-40">
-							<p className="text-red-800">Todos los campos son obligatorios</p>
-						</div>) 
+					error && <Error message={"Todos los campos son obligatorios"}/>
+						
 				} 
 				
 					

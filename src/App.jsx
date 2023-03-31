@@ -16,7 +16,9 @@ export default function App() {
                     patients={patients}
                     setPatients={setPatients}
                 />
-                <PatientsList />
+                <PatientsList 
+                    patients={patients}
+                />
             </div>
 
         </div>
