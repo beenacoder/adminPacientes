@@ -1,25 +1,31 @@
 
-function Patients() {
+function Patients({patient}) {
+
+    //Desctructuring 
+    const {petName, ownerName, email, date, symptoms}= patient;
+
   return (
     <div className='m-3 bg-white shadow-md px-5 py-10 rounded-md'>
                 <p className='font-bold mb-3 text-gray-700 uppercase'>Nombre: {''}
-                    <span className='font-normal normal-case'>Hook</span>
+                    {/* OldSchool: <span className='font-normal normal-case'>{patient.petName}</span> */}
+                    <span className='font-normal normal-case'>{petName}</span> 
                 </p>
 
                 <p className='font-bold mb-3 text-gray-700 uppercase'>Propietario: {''}
-                    <span className='font-normal normal-case'>Ariel Cabeza</span>
+                    {/* OldSchool: <span className='font-normal normal-case'>{patient.ownerName}</span> */}
+                    <span className='font-normal normal-case'>{ownerName}</span>
                 </p>
 
                 <p className='font-bold mb-3 text-gray-700 uppercase'>Email de contacto: {''}
-                    <span className='font-normal normal-case'>cervanteslibch@gmail.com</span>
+                    <span className='font-normal normal-case'>{email}</span>
                 </p>
 
                 <p className='font-bold mb-3 text-gray-700 uppercase'>Fecha de alta: {''}
-                    <span className='font-normal normal-case'>29/03/2023</span>
+                    <span className='font-normal normal-case'>{date}</span>
                 </p>
 
                 <p className='font-bold mb-3 text-gray-700 uppercase'>Síntomas: {''}
-                    <span className='font-normal normal-case'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, ab quisquam. Culpa optio vitae eligendi excepturi tenetur commodi quasi at aspernatur numquam iste ipsa, repellat cumque recusandae aliquid magnam dolorum?</span>
+                    <span className='font-normal normal-case'>{symptoms}</span>
                 </p>
             </div>
   )
