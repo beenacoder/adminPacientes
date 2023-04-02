@@ -2,7 +2,7 @@ import { useState } from "react"
 import Error from "./Error";
 
 
-function Form({patients, setPatients, message}) {
+function Form({patients, setPatients}) {
 	const [petName, setPetName] = useState('');
 	const [ownerName, setOwnerName] = useState('');
 	const [email, setEmail] = useState('');
@@ -12,6 +12,11 @@ function Form({patients, setPatients, message}) {
 	//Error state
 	const [error, setError] = useState(false);
 
+	function generateId(){
+		const random = Math.random().toString(36).substring(2);
+		const date = Date.now().toString(36);
+		return random + date;
+	}
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -30,7 +35,8 @@ function Form({patients, setPatients, message}) {
 			ownerName, 
 			email, 
 			date, 
-			symptoms
+			symptoms,
+			id: generateId()
 		}
 
 		setPatients([...patients, patientsObj]);
@@ -41,7 +47,6 @@ function Form({patients, setPatients, message}) {
 		setEmail('');
 		setDate('');
 		setSymptoms('');
-
 	}
 
 
