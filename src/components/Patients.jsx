@@ -1,5 +1,5 @@
 
-function Patients({patient}) {
+function Patients({patient, setPatientEdit}) {
 
     //Desctructuring 
     const {petName, ownerName, email, date, symptoms}= patient;
@@ -32,6 +32,7 @@ function Patients({patient}) {
                     <button 
                         type="button"
                         className="py-2 px-10 bg-indigo-600 hover:bg-indigo-700 text-white font-bold uppercase rounded-md"
+                        onClick={()=>setPatientEdit(patient)}
                         >Editar
                     </button>
                     <button 

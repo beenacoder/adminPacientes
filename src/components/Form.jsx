@@ -1,16 +1,27 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Error from "./Error";
 
 
-function Form({patients, setPatients}) {
+function Form({patients, setPatients, patientEdit}) {
 	const [petName, setPetName] = useState('');
 	const [ownerName, setOwnerName] = useState('');
 	const [email, setEmail] = useState('');
 	const [date, setDate] = useState('');
 	const [symptoms, setSymptoms] = useState('');
-
 	//Error state
 	const [error, setError] = useState(false);
+
+
+	useEffect(()=>{
+		if(Object.keys(patientEdit).length > 0){
+			setPetName(patientEdit.petName);
+			setOwnerName(patientEdit.ownerName);
+			setEmail(patientEdit.email);
+			setDate(patientEdit.date);
+			setSymptoms(patientEdit.symptoms);
+
+		}
+	},[patientEdit])
 
 	function generateId(){
 		const random = Math.random().toString(36).substring(2);
@@ -145,7 +156,7 @@ function Form({patients, setPatients}) {
 				</div>
 				<input type="submit"
 					className="bg-indigo-600 w-full p-3 text-white upper font-bold hover:bg-indigo-700 cursor-pointer rounded-md transition-all"
-					value="Agregar Paciente" 
+					value={patientEdit.id ? 'Guardar Cambios' : 'Agregar Paciente'} 
 				/>
 			</form>
 
