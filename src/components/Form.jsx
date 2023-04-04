@@ -19,7 +19,6 @@ function Form({patients, setPatients, patientEdit}) {
 			setEmail(patientEdit.email);
 			setDate(patientEdit.date);
 			setSymptoms(patientEdit.symptoms);
-
 		}
 	},[patientEdit])
 
@@ -50,7 +49,17 @@ function Form({patients, setPatients, patientEdit}) {
 			id: generateId()
 		}
 
-		setPatients([...patients, patientsObj]);
+		if(patientEdit.id){
+			//Editing a patient
+			patientsObj.id = patientEdit.id;
+			console.log(patientsObj);
+
+		} else {
+			//Adding new patient
+			patientsObj.id = generateId();
+			setPatients([...patients, patientsObj]);
+		}
+
 
 		//Unsetting form
 		setPetName('');
@@ -76,8 +85,6 @@ function Form({patients, setPatients, patientEdit}) {
 						
 				} 
 				
-					
-
 				<div className="mb-5">
 					<label 
 					htmlFor="petName"
