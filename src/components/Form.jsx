@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import Error from "./Error";
 
 
-function Form({patients, setPatients, patientEdit}) {
+function Form({patients, setPatients, patientEdit, setPatientEdit}) {
 	const [petName, setPetName] = useState('');
 	const [ownerName, setOwnerName] = useState('');
 	const [email, setEmail] = useState('');
@@ -52,8 +52,9 @@ function Form({patients, setPatients, patientEdit}) {
 		if(patientEdit.id){
 			//Editing a patient
 			patientsObj.id = patientEdit.id;
-			console.log(patientsObj);
-
+			const patientActualized = patients.map(patientInStateToEdit => patientInStateToEdit.id === patientEdit.id ? patientsObj : patientInStateToEdit) 
+			setPatients(patientActualized);
+			setPatientEdit({});
 		} else {
 			//Adding new patient
 			patientsObj.id = generateId();

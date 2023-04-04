@@ -19,6 +19,7 @@ export default function App() {
                     patients={patients}
                     setPatients={setPatients}
                     patientEdit={patientEdit}
+                    setPatientEdit={setPatientEdit}
                 />
                 <PatientsList 
                     patients={patients}
