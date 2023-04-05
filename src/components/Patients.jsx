@@ -1,8 +1,16 @@
 
-function Patients({patient, setPatientEdit}) {
+function Patients({patient, setPatientEdit, deletePatient}) {
 
     //Desctructuring 
-    const {petName, ownerName, email, date, symptoms}= patient;
+    const {petName, ownerName, email, date, symptoms, id}= patient;
+
+    const handleDelete = () => {
+        const confirmDelete = confirm('Eliminar este paciente?');
+        if(confirmDelete) {
+            deletePatient(id);
+        }
+    }
+
 
   return (
     <div className='m-3 bg-white shadow-md px-5 py-10 rounded-md'>
@@ -38,6 +46,7 @@ function Patients({patient, setPatientEdit}) {
                     <button 
                         type="button"
                         className="py-2 px-10 bg-red-600 hover:bg-red-700 text-white font-bold uppercase rounded-md"
+                        onClick={handleDelete}
                         >Eliminar
                     </button>
                 </div>

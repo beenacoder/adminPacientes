@@ -9,6 +9,10 @@ export default function App() {
     //Estado para el boton editar, para llenar formulario a editar
     const [patientEdit, setPatientEdit]= useState({});
 
+    const deletePatient = (id) =>{
+        const patientToDelete = patients.filter(patientDel => patientDel.id !== id);
+        setPatients(patientToDelete);
+    }
 
     return (
         <div className="container mx-auto mt-20 px-12">
@@ -24,6 +28,7 @@ export default function App() {
                 <PatientsList 
                     patients={patients}
                     setPatientEdit={setPatientEdit}
+                    deletePatient={deletePatient}
                 />
             </div>
 

@@ -1,6 +1,6 @@
 import Patients from './Patients'
 
-function PatientsList({patients, setPatientEdit}) {
+function PatientsList({patients, setPatientEdit, deletePatient}) {
     
   
 
@@ -18,6 +18,7 @@ function PatientsList({patients, setPatientEdit}) {
                             key={patient.id}
                             patient={patient} 
                             setPatientEdit={setPatientEdit}     
+                            deletePatient={deletePatient}
                         />
                     )}
                 </>
